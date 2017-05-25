@@ -20,7 +20,7 @@ The goals / steps of this project are the following:
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[video1]: ./output_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -74,14 +74,16 @@ Then I calculated the histogram of the image and searched for the peak of the le
 
 #### 5.  Radius of curvature of the lane and the position of the vehicle with respect to center.
 
-To compute the raduis of curvature I fitted the right and left lane points to a second order polynom which I used to compute the right and left radius of the lane curvature. I computed the raduis of curvature as the mean value of the two radiuses computed previously.
-
-The lane position is the difference between the camera position and the lane center.
-
+To compute the raduis of curvature I fitted in the function `calc_curve(4- Detecting lanes and fitting curve)` the right and left
+lane points to a second order polynom which I used to compute the right and left radius of the lane curvature. 
+I computed the raduis of curvature as the mean value of the two radiuses
+computed previously.
+The lane position is the difference between the camera position and the lane center computed in `warp_back(5- warping back to the original image)`.
 The code to compute 
-#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+#### 6. Example image of the plotted back down onto the road such that the lane area is identified clearly.
+
+I implemented this step in `5- warping back to the original image` Here is an example of my result on a test image:
 
 ![alt text][image6]
 
@@ -91,12 +93,12 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_video.mp4)
 
 ---
 
 ### Discussion
 
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+I had the problem that my pipeline failed to detect the lanes correctly in some images where shadows exists or some objects near the car. I tried to avoid this porblem by using a mask on the binary thresholded images to avoid any noise on the right or left of the lane.
+My video processing pipiline would mostly fail if any important noise exists in the lane where the car is driving.
+A second mask that erase the noise in the middle of the road could make the pipeline more robust.
