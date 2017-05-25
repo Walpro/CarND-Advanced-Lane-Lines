@@ -51,7 +51,7 @@ I converted the image colors to HSV color space and used the Soebel operator to 
 
 ![alt text][image3]
 
-#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+#### 3. Perspective transform and provide an example of a transformed image.
 
 The code for my perspective transform includes a function called `Pers_transform()`, which appears in `3- Perspective transform`lines 1 through 10.  This function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points. After tests on the images, I selected the following points:
 
@@ -66,16 +66,19 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ![alt text][image4]
 
-#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+#### 4. identifiying lane-line pixels and fit their positions with a polynomial
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+Then I calculated the histogram of the image and searched for the peak of the left and right halves of the histogram which I used as a starting point then i did a sliding window search to find the points on the lane. After that I fitted these points to a second order polynom and plotted it on the image using `cv2.fillPoly`.
 
 ![alt text][image5]
 
-#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+#### 5.  Radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+To compute the raduis of curvature I fitted the right and left lane points to a second order polynom which I used to compute the right and left radius of the lane curvature. I computed the raduis of curvature as the mean value of the two radiuses computed previously.
 
+The lane position is the difference between the camera position and the lane center.
+
+The code to compute 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
