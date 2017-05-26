@@ -44,10 +44,10 @@ To undistort an image I used the camera calibration and distortion coefficients 
 
 ![alt text][image2]
 
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+#### 2. thresholded binary image.
 
 In `2- Thresholded binary images`, I used a combination of color and gradient thresholds to generate a binary image . 
-I converted the image colors to HSV color space and used the Soebel operator to compute the image x gradiant after that I used threshold to extract the importnant image features Here's an example of my output for this step.
+I converted the image colors to HLS color space and used the Soebel operator to compute the image x gradiant after that I used thresholds to extract the importnant image features Here's an example of my output for this step.
 
 ![alt text][image3]
 
